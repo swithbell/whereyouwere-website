@@ -1,0 +1,413 @@
+@font-face { font-family: "Young Serif"; src: url("fonts/YoungSerif-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+/* Where You Were website
+   Plain cream paper, Young Serif (served from this site), big type, stamped circles.
+   No outside fonts, no trackers, no build step. */
+
+:root {
+  --paper: #F6F3EC;
+  --paper-raised: #FBF9F4;
+  --ink: #2C2824;
+  --ink-soft: #4A433C;          /* secondary text, still high contrast */
+  --rule: #D8D1C4;
+
+  /* inks, in first-visited order */
+  --sage: #8F9E7C;
+  --blue: #7E95AE;
+  --terracotta: #C48470;
+  --plum: #A8889A;
+  --ochre: #B8956A;
+  --teal: #6E9E98;
+  --rose: #C49298;
+  --olive: #9E9A58;
+  --grey: #A3988C;
+
+  --read: 44rem;
+  --wide: 76rem;
+}
+
+* { box-sizing: border-box; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Young Serif", Georgia, serif;
+  font-synthesis: none;
+  font-size: 1.375rem;          /* 22px */
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);     /* plain flat cream, no grid */
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 3px; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 6px; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 0.6rem 1rem; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 50; }
+
+h1, h2, h3 { font-weight: 400; line-height: 1.12; margin: 0 0 0.5em; letter-spacing: -0.005em; }
+h1 { font-size: clamp(3.25rem, 7vw, 5.5rem); }
+h2 { font-size: clamp(2.25rem, 4.6vw, 3.25rem); }
+h3 { font-size: clamp(1.625rem, 2.8vw, 1.875rem); }
+p, li { margin: 0 0 1em; }
+
+
+/* ---------- header ---------- */
+.site-header { border-bottom: 1px solid var(--rule); background: rgba(246, 243, 236, 0.94); }
+.site-header .inner {
+  max-width: var(--wide); margin: 0 auto; padding: 1rem 1.5rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem;
+}
+.brand { display: inline-flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+.brand-mark { display: inline-flex; align-items: center; }
+.brand-mark .stamp-icon { width: 30px; height: 30px; margin-right: -7px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-name { font-size: 1.75rem; }
+.brand-tag { font-size: 1.125rem; font-style: italic; color: var(--ink-soft); }
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 0.4rem; }
+.site-nav a { font-size: 1.25rem; text-decoration: none; padding: 0.45rem 0.7rem; border-radius: 8px; }
+.site-nav a:hover { text-decoration: underline; }
+
+/* ---------- layout ---------- */
+.section { padding: 5rem 1.5rem; border-bottom: 1px solid var(--rule); }
+.wrap { max-width: var(--wide); margin: 0 auto; }
+.read { max-width: var(--read); margin: 0 auto; }
+.center { text-align: center; }
+.section-head { max-width: 46rem; margin-bottom: 2.75rem; }
+.section-head p { font-size: 1.5rem; line-height: 1.55; }
+
+/* ---------- hero ---------- */
+.hero { padding-top: 4rem; padding-bottom: 4.5rem; }
+.hero-grid {
+  display: grid; gap: 1.5rem 3.5rem;
+  grid-template-columns: 1fr 1.25fr;
+  grid-template-areas: "text text" "more art";
+  align-items: start;
+}
+.hero-text { grid-area: text; }
+.hero-art { grid-area: art; margin: 0; align-self: start; }
+.hero-more { grid-area: more; }
+.hero-art img, .spot-art img {
+  mix-blend-mode: multiply;
+  /* feather the edges so the painting sits on the paper */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+}
+.hero-art { margin-top: -7.5rem; margin-right: -1rem; }
+.eyebrow { font-size: 1.375rem; color: var(--ink-soft); font-style: italic; margin-bottom: 0.3rem; }
+.hero h1 { margin-bottom: 0.15em; font-size: clamp(3.25rem, 8vw, 6rem); }
+.tagline { font-size: clamp(1.75rem, 3.4vw, 2.375rem); line-height: 1.3; font-style: italic; margin: 0 0 1.25rem; }
+.lede { font-size: clamp(1.375rem, 2.2vw, 1.5rem); line-height: 1.55; }
+
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2rem; margin: 1.75rem 0 0.5rem; }
+.cta-row.centered { justify-content: center; }
+.store-btn {
+  display: inline-flex; flex-direction: column; justify-content: center;
+  background: var(--ink); color: var(--paper);
+  font-size: 2rem; line-height: 1.05; letter-spacing: 0.01em;
+  padding: 1rem 2.25rem 1.1rem; min-height: 5.25rem; border-radius: 16px;
+  text-decoration: none; box-shadow: 0 3px 0 rgba(0,0,0,0.28);
+  transition: background-color .15s, transform .15s;
+}
+.store-btn small { font-size: 1.125rem; letter-spacing: 0.02em; margin-bottom: 0.2rem; opacity: 0.92; }
+.store-btn:hover { background: #000; }
+.store-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.28); }
+/* "Coming soon" state: same look, not a link (see APP_STORE_ID at the top of app.js) */
+.store-btn.is-soon { cursor: default; }
+.store-btn.is-soon:hover { background: var(--ink); }
+.store-btn.is-soon:active { transform: none; box-shadow: 0 3px 0 rgba(0,0,0,0.28); }
+
+.qr { display: flex; flex-direction: column; align-items: center; }
+.qr-box {
+  position: relative; width: 132px; height: 132px;
+  border: 2px dashed var(--ink-soft); border-radius: 10px; background: var(--paper-raised);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.qr-corner { position: absolute; width: 30px; height: 30px; border: 6px solid var(--ink); border-radius: 4px; }
+.qr-corner.tl { top: 12px; left: 12px; } .qr-corner.tr { top: 12px; right: 12px; } .qr-corner.bl { bottom: 12px; left: 12px; }
+.qr-note { font-size: 1rem; line-height: 1.2; color: var(--ink-soft); font-style: italic; margin-top: 0.6rem; }
+.qr-img { display: block; width: 132px; height: 132px; border-radius: 10px; background: #fff; }
+.qr-label { font-size: 1.125rem; margin: 0.5rem 0 0; }
+.plain-facts { font-size: 1.25rem; color: var(--ink-soft); margin-top: 1.25rem; }
+
+/* ---------- stamps (shared) ---------- */
+.stamp-icon { display: inline-block; flex: none; width: 1.3em; height: 1.3em; vertical-align: middle; }
+.stamp-icon svg, .mark svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.stamp-icon.big { width: 64px; height: 64px; }
+
+
+/* ---------- month section ---------- */
+.month-grid { display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 3rem 4rem; align-items: start; }
+.phone-col { width: 100%; min-width: 0; container-type: inline-size; }
+
+/* Illustrated iPhone: real modern proportions, 71.5 x 147.6 mm body (about 19.5:9).
+   Screen inside is 19.5:9 (2.17 : 1). Sizes are in cqw (percent of the phone's width) so the shape holds at every width:
+   narrow even border, generously rounded corners, small pill-shaped Dynamic Island. */
+.iphone {
+  position: relative; box-sizing: border-box; width: 100%; aspect-ratio: 71.5 / 147.6;
+  display: flex; flex-direction: column;
+  border-radius: 16.5cqw; padding: 4.4cqw;   /* 4.4% border leaves a 19.5:9 screen, like the real phone */
+}
+/* the drawn frame (brush-ink outline, island, home stroke) sits on top; it never takes clicks */
+.phone-ink, .phone-patch { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.phone-patch { z-index: 0; }
+.phone-patch path { fill: #CBD5DF; }                 /* pale muted blue, laid a little off the line */
+.phone-ink { z-index: 2; }
+.phone-ink path { fill: var(--ink); }
+.phone-ink .island { fill: #211E1B; }
+.iphone-screen {
+  position: relative; z-index: 1; flex: 1; min-height: 0; box-sizing: border-box;
+  border-radius: 12.1cqw; padding: 2.4cqw 3.2cqw 0;
+  background: var(--paper-raised);   /* plain cream, no grid */
+}
+.status { height: 9cqw; }            /* room for the drawn Dynamic Island */
+.app-name { text-align: center; font-size: 1.25rem; font-style: italic; color: var(--ink-soft); margin: 2.2rem 0 0; }
+.app-month { text-align: center; font-size: 2.125rem; margin: 0 0 0.6rem; }
+.weekdays, .cal { display: grid; grid-template-columns: repeat(7, 1fr); }
+.weekdays { font-size: 1.125rem; color: var(--ink-soft); text-align: center; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; margin-bottom: 0.3rem; }
+
+.cal { row-gap: 2px; }
+.day {
+  position: relative; display: block; width: 100%; aspect-ratio: 1 / 1;
+  background: none; border: 0; padding: 0; margin: 0; font: inherit; color: var(--ink);
+  cursor: default; -webkit-tap-highlight-color: transparent;
+}
+.day .mark {
+  position: absolute; inset: 7.5%;
+  display: flex; align-items: center; justify-content: center;
+  transition: scale .2s ease, opacity .2s ease, filter .2s ease;
+}
+.day .mark svg { position: absolute; inset: 0; }
+.day .num { position: relative; font-size: 1.375rem; line-height: 1; }
+.day.is-empty { cursor: pointer; }
+.day.is-empty .num { color: #5E5750; }
+.day.is-empty:hover .mark { background: rgba(44,40,36,0.06); border-radius: 50%; }
+.day.is-today .mark::after {
+  content: ""; position: absolute; inset: -5%; border: 2px solid var(--ink); border-radius: 50%;
+}
+
+/* tooltip (Grow + tell) */
+.tip {
+  position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--paper); font-size: 1.125rem; line-height: 1.2; white-space: nowrap;
+  padding: 0.45rem 0.7rem; border-radius: 8px; pointer-events: none; opacity: 0; z-index: 5;
+  transition: opacity .15s ease;
+}
+.day.col-0 .tip, .day.col-1 .tip { left: 0; transform: none; }
+.day.col-5 .tip, .day.col-6 .tip { left: auto; right: 0; transform: none; }
+
+.cal .day:hover, .cal .day:focus-visible { z-index: 4; }
+.cal.mode-grow .day.is-stamped { cursor: pointer; }
+.cal.mode-grow .day.is-stamped:hover .mark,
+.cal.mode-grow .day.is-stamped:focus-visible .mark { scale: 1.42; }
+.cal.mode-grow .day.is-stamped:hover .tip,
+.cal.mode-grow .day.is-stamped:focus-visible .tip { opacity: 1; }
+
+/* Nudge: tip a few degrees and settle back (triggered only by the pointer) */
+@keyframes nudge {
+  0%   { rotate: 0deg; translate: 0 0; }
+  30%  { rotate: var(--nr, 4deg); translate: var(--nx, 1px) var(--ny, -1px); }
+  62%  { rotate: calc(var(--nr, 4deg) * -0.4); translate: 0 0; }
+  100% { rotate: 0deg; translate: 0 0; }
+}
+.nudging { animation: nudge .55s cubic-bezier(.3,.7,.4,1) 1; }
+
+/* Linked totals */
+.cal.linking .day.is-stamped .mark { opacity: 0.28; }
+.cal.linking .day.is-stamped.hl .mark { opacity: 1; scale: 1.22; }
+
+/* Press to stamp */
+.day.pressing .mark { scale: 0.9; }
+@keyframes stamp-in {
+  0%   { scale: 1.3; opacity: 0; }
+  45%  { scale: 0.92; opacity: 1; }
+  100% { scale: 1; opacity: 1; }
+}
+.day.just-stamped .mark { animation: stamp-in .32s ease-out 1; }
+
+/* key inside the phone */
+.app-key { list-style: none; margin: 1rem 0 0; padding: 0.8rem 0 0; border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1.2rem; font-size: 1.125rem; }
+.app-key li { display: flex; align-items: center; gap: 0.35rem; margin: 0; }
+.app-key .stamp-icon { width: 22px; height: 22px; }
+
+/* "This month" list in the lower part of the phone screen */
+.this-month { margin: 1.6rem auto 0; max-width: 15rem; padding: 0 0.4rem; color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.45; }
+.this-month-head { font-style: italic; margin: 0 0 0.4rem; text-align: center; }
+#month-list { list-style: none; margin: 0; padding: 0; }
+#month-list li { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.2rem; }
+#month-list .stamp-icon { width: 16px; height: 16px; }
+#month-list .md { margin-left: auto; font-variant-numeric: tabular-nums; }
+/* once more than four countries are stamped, the list flows inline to stay inside the screen */
+.this-month.compact { max-width: none; margin-top: 1rem; }
+.this-month.compact #month-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.1rem 0.9rem; }
+.this-month.compact #month-list li { gap: 0.35rem; margin: 0; }
+.this-month.compact #month-list .md { margin-left: 0.1rem; }
+
+/* switch */
+.hover-switch { margin-bottom: 2.25rem; }
+.switch-label { font-size: 1.25rem; margin: 0 0 0.5rem; }
+.switch-btns { display: inline-flex; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
+.switch-btns button {
+  font: inherit; font-size: 1.25rem; padding: 0.55rem 1.2rem; border: 0; background: var(--paper-raised); color: var(--ink); cursor: pointer;
+}
+.switch-btns button + button { border-left: 2px solid var(--ink); }
+.switch-btns button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+/* totals */
+.totals { background: var(--paper-raised); border: 1px solid var(--rule); padding: 1.75rem 1.9rem; }
+.totals h3 { margin-bottom: 0.15em; font-size: 2rem; }
+.totals-sub { color: var(--ink-soft); font-size: 1.25rem; margin-bottom: 1rem; }
+.totals-list { list-style: none; margin: 0; padding: 0; }
+.totals-list li { margin: 0; border-top: 1px solid var(--rule); }
+.totals-list li:last-child { border-bottom: 1px solid var(--rule); }
+.tot-row {
+  width: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.2rem 0.9rem;
+  font: inherit; font-size: 1.5rem; color: var(--ink); background: none; border: 0; padding: 0.7rem 0.4rem; text-align: left; cursor: pointer;
+  transition: background-color .15s;
+}
+.tot-row .stamp-icon { width: 38px; height: 38px; }
+.tot-days { font-variant-numeric: lining-nums tabular-nums; }
+.tot-bar { grid-column: 2 / 4; height: 8px; border-radius: 4px; background: rgba(44,40,36,0.07); overflow: hidden; }
+.tot-bar span { display: block; height: 100%; border-radius: 4px; }
+.tot-row:hover, .tot-row:focus-visible, .tot-row.hl { background: rgba(44,40,36,0.06); }
+.totals-note { font-size: 1.1875rem; color: var(--ink-soft); margin: 1.25rem 0 0; line-height: 1.55; }
+
+/* ---------- who ---------- */
+.who-list { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 3.5rem; }
+.who-list li { display: grid; grid-template-columns: 64px 1fr; gap: 1.25rem; margin: 0; align-items: start; }
+.who-list li.wide { grid-column: 1 / -1; max-width: 38rem; }
+.who-list h3 { margin: 0.35rem 0 0.35rem; }
+.who-list p { margin: 0; }
+
+/* ---------- how ---------- */
+.how-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem 4rem; align-items: center; }
+.steps { list-style: none; padding: 0; margin: 1.5rem 0 0; counter-reset: step; }
+.steps li { position: relative; padding-left: 4.2rem; margin-bottom: 2rem; counter-increment: step; }
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  width: 3rem; height: 3rem; line-height: 2.85rem; text-align: center;
+  border: 2px solid var(--ink); border-radius: 50%; font-size: 1.5rem;
+}
+.steps strong { display: block; font-weight: 400; font-size: 1.875rem; line-height: 1.25; margin-bottom: 0.3rem; }
+.spot-art { margin: 0; }
+
+/* ---------- privacy + faq ---------- */
+.stamp-bullets { list-style: none; padding: 0; margin: 1.5rem 0; }
+.stamp-bullets li { display: grid; grid-template-columns: 34px 1fr; gap: 1rem; align-items: start; margin-bottom: 1rem; }
+.stamp-bullets .stamp-icon { width: 30px; height: 30px; margin-top: 0.2rem; }
+.qa { border-top: 1px solid var(--rule); padding: 1.6rem 0 0.4rem; }
+.qa h3 { margin-bottom: 0.4rem; }
+.more { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 1.5rem; }
+
+/* ---------- inner pages (FAQ, privacy, support) ---------- */
+.page-head { padding: 4rem 1.5rem 2.25rem; border-bottom: 1px solid var(--rule); }
+.page-head h1 { font-size: clamp(2.75rem, 6vw, 4.25rem); margin-bottom: 0.35em; }
+.page-head .read > p { font-size: 1.5rem; line-height: 1.55; }
+.page-head .stamp-bullets { margin-bottom: 0.5rem; }
+.page-head .stamp-bullets li { font-size: 1.375rem; }
+.updated { color: var(--ink-soft); font-style: italic; font-size: 1.25rem; margin: 1.25rem 0 0; }
+.doc { padding: 3rem 1.5rem 4.5rem; }
+.doc h2 { margin: 2.75rem 0 0.6rem; font-size: clamp(1.875rem, 4.4vw, 2.375rem); }
+.doc .read > h2:first-child { margin-top: 0; }
+.doc h3 { margin: 2rem 0 0.4rem; font-size: clamp(1.5rem, 3.4vw, 1.75rem); }
+.doc ul, .doc ol { padding-left: 1.4rem; }
+.doc li { margin-bottom: 0.6rem; }
+.doc li::marker { color: var(--ink-soft); }
+
+.faq-index { padding-left: 1.8rem; margin: 1.75rem 0 0; font-size: 1.3125rem; }
+.faq-index li { margin-bottom: 0.5rem; padding-left: 0.25rem; }
+.faq-index li::marker { color: var(--ink-soft); }
+.faq-list { margin: 0; }
+.faq { border-top: 1px solid var(--rule); padding: 2rem 0 1.25rem; scroll-margin-top: 1rem; }
+.faq:first-child { border-top: 0; padding-top: 0; }
+.faq h2 { font-size: clamp(1.75rem, 4vw, 2.125rem); margin: 0 0 0.6rem; }
+.faq ul { padding-left: 1.4rem; }
+.faq .back { font-size: 1.125rem; margin: 0.25rem 0 0; }
+.faq .back a { color: var(--ink-soft); }
+
+.notice {
+  border: 1.5px solid var(--ink); background: var(--paper-raised);
+  padding: 1.5rem 1.75rem; margin: 2.5rem 0 0;
+}
+.notice p:last-child { margin-bottom: 0; }
+.notice strong { font-size: 1.5rem; font-weight: 400; display: block; margin-bottom: 0.4rem; }
+
+.contact-card {
+  border: 1.5px solid var(--ink); background: var(--paper-raised);
+  padding: 1.75rem 2rem; margin: 0 0 2.75rem; text-align: center;
+}
+.contact-card p { margin: 0 0 0.4rem; }
+.contact-card p:last-child { margin: 0; color: var(--ink-soft); }
+.contact-card .email { font-size: clamp(1.5rem, 5vw, 2.25rem); line-height: 1.25; overflow-wrap: anywhere; }
+
+.bottom-cta { border-bottom: 0; }
+.bottom-cta .tagline { margin-bottom: 0.5rem; }
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1px solid var(--rule); padding: 3rem 1.5rem 3.5rem; text-align: center; }
+.site-footer .foot-domain { font-size: 1.75rem; color: var(--ink); margin: 0 0 0.75rem; }
+.site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 2rem; margin-bottom: 1.25rem; }
+.site-footer nav a { font-size: 1.375rem; padding: 0.3rem 0.2rem; }
+.site-footer p { font-size: 1.25rem; color: var(--ink-soft); margin: 0.3rem 0; }
+.site-footer .foot-tag { font-style: italic; color: var(--ink); font-size: 1.375rem; }
+
+/* ---------- narrower screens ---------- */
+@media (max-width: 64rem) {
+  .month-grid { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .phone-col { width: min(420px, 100%); }
+  .side-col { width: 100%; max-width: 40rem; }
+  .how-grid { grid-template-columns: 1fr; }
+  .spot-art { max-width: 32rem; }
+}
+@media (max-width: 56rem) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "art" "more"; }
+  .hero-art { margin-top: 0; margin-right: 0; }
+  .who-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 40rem) {
+  body { font-size: 1.3125rem; }   /* 21px */
+  .section { padding: 3.25rem 1.1rem; }
+  .hero { padding-top: 2.25rem; }
+  .site-header .inner { padding: 0.8rem 1rem; justify-content: center; }
+  .brand-name { font-size: 1.625rem; }
+  .site-nav { justify-content: center; }
+  .site-nav a { font-size: 1.1875rem; padding: 0.35rem 0.5rem; }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .store-btn { align-items: center; text-align: center; }
+  .qr { align-self: center; }
+  .app-month { font-size: 1.875rem; }
+  .day .num { font-size: 1.1875rem; }
+  .tip { font-size: 1.0625rem; }
+  .totals { padding: 1.25rem 1.1rem; }
+  .tot-row { font-size: 1.375rem; }
+  .who-list li { grid-template-columns: 48px 1fr; gap: 1rem; }
+  .stamp-icon.big { width: 48px; height: 48px; }
+  .steps li { padding-left: 3.6rem; }
+  .steps li::before { width: 2.6rem; height: 2.6rem; line-height: 2.45rem; font-size: 1.3rem; }
+  .steps strong { font-size: 1.625rem; }
+  .page-head { padding: 2.5rem 1.1rem 1.75rem; }
+  .doc { padding: 2.25rem 1.1rem 3.5rem; }
+  .notice, .contact-card { padding: 1.25rem 1.2rem; }
+}
+
+/* very narrow phones: tighten the drawn phone's contents so a full month still fits */
+@media (max-width: 23.75rem) {
+  .app-name { margin-top: 1.2rem; }
+  .app-month { font-size: 1.75rem; margin-bottom: 0.4rem; }
+  .app-key { font-size: 1rem; gap: 0.2rem 0.9rem; margin-top: 0.7rem; padding-top: 0.6rem; }
+  .this-month { font-size: 1rem; margin-top: 1.1rem; }
+  .this-month.compact { margin-top: 0.6rem; }
+}
+
+/* ---------- reduced motion: only simple color / size changes ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  /* Nudge becomes a small color change */
+  .cal.mode-nudge .day.is-stamped:hover .mark,
+  .nudgeable:hover { filter: saturate(1.5) brightness(0.88); }
+}
+@media print { body { background: #fff; } .site-nav, .store-btn { display: none; } }
