@@ -78,7 +78,7 @@ p, li { margin: 0 0 1em; }
 .section-head p { font-size: 1.5rem; line-height: 1.55; }
 
 /* ---------- hero ---------- */
-.hero { padding-top: 4rem; padding-bottom: 4.5rem; }
+.hero { padding-top: 2rem; padding-bottom: 4.5rem; }
 .hero-grid {
   display: grid; gap: 1.5rem 3.5rem;
   grid-template-columns: 1fr 1.25fr;
@@ -96,7 +96,8 @@ p, li { margin: 0 0 1em; }
   mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%);
   mask-composite: intersect;
 }
-.hero-art { margin-top: -7.5rem; margin-right: -1rem; }
+/* the art sits in its own grid row below the tagline, so it can never overlap the text */
+.hero-art { margin-top: 0; margin-right: 0; }
 .eyebrow { font-size: 1.375rem; color: var(--ink-soft); font-style: italic; margin-bottom: 0.3rem; }
 .hero h1 { margin-bottom: 0.15em; font-size: clamp(3.25rem, 8vw, 6rem); }
 .tagline { font-size: clamp(1.75rem, 3.4vw, 2.375rem); line-height: 1.3; font-style: italic; margin: 0 0 1.25rem; }
@@ -365,13 +366,13 @@ p, li { margin: 0 0 1em; }
 }
 @media (max-width: 56rem) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "art" "more"; }
-  .hero-art { margin-top: 0; margin-right: 0; }
+  .hero-art { margin-top: 1.125rem; margin-right: 0; }
   .who-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 40rem) {
   body { font-size: 1.3125rem; }   /* 21px */
   .section { padding: 3.25rem 1.1rem; }
-  .hero { padding-top: 2.25rem; }
+  .hero { padding-top: 1.125rem; }
   .site-header .inner { padding: 0.8rem 1rem; justify-content: center; }
   .brand-name { font-size: 1.625rem; }
   .site-nav { justify-content: center; }
